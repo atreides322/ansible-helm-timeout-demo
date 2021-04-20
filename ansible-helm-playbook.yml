@@ -1,0 +1,12 @@
+- hosts: localhost
+  tasks:
+    - name: Install Helm chart
+      kubernetes.core.helm:
+        name: demo
+        chart_ref: demo
+        wait: "{{ demo_do_wait | default('no') | bool }}"
+        wait_timeout: 10m
+        release_namespace: default
+
+        # Always reinstall, for demo purposes
+        force: yes
